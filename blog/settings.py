@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.noticia',
     'apps.comentario',
     'apps.usuario',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +88,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Configuracion de ckeditor:
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
