@@ -16,7 +16,7 @@ class Noticia(models.Model):
     activo = models.BooleanField(default = True)
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True)
     destacada = models.BooleanField(default = False)
-    imagen = models.ImageField(upload_to = 'noticia', default = 'noticia/default.png')
+    imagen = models.ImageField(upload_to = 'noticia', default = 'media/noticia/default.png')
 
     def __str__(self):
         return self.titulo
