@@ -1,5 +1,5 @@
 from .settings import *
-import django_heroku
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -17,5 +17,5 @@ DATABASES = {
     }
 }
 
-
+import django_heroku
 django_heroku.settings(locals())
