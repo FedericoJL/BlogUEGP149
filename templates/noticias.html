@@ -3,16 +3,16 @@
 {% load static %}
 
 {% block noticias %}
-
+{% if posts %}
+{% for post in posts %}
 <div class="conteiner-fluid">
     <div class="d-flex justify-content-around mt-5 mb-5">
             <div class="card  sombra" style="width: 60rem; ; ">
-                <img class="card-img-top " alt="..."> {{noticia.imagen}}
+                <img class="card-img-top " alt="..."> {{post.imagen}}
                 <div class="card-body">
-                    <h5 class="card-title">{{ noticia.titulo }}</h5>
-                    <p class="card-text">{{noticia.texto}}</p>
-                <a href="#" class="btn btn-primary botonesForm ">volver</a>
-                </p>
+                    <h5 class="card-title">{{post.titulo}}</h5>
+                    <p class="card-text">{{post.texto}}    
+                    </p>                   
                 <!-- Comments section-->
             <div class="card bg-light">
                 <div class="card-body">
@@ -57,6 +57,7 @@
         </div>   
     </div>
 </div>
-
+{% endfor %}
+{% endif %}
       
 {% endblock %}

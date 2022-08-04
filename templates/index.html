@@ -4,53 +4,18 @@
 
 <div class="conteiner-fluid">
     <div class="d-flex justify-content-around mt-5 mb-5">
-        
-            <div class="card  sombra" style="width: 25rem; ; ">
-                <img src="{% static 'img/noticias/1.jpg' %}" class="card-img-top " alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">APRENDER UN OFICIO TE DA UNA OPORTUNIDAD</h5>
-                    <p class="card-text">U.E.G.P N° 149 "Fundación Uocra"
-                        INSCRIPCIONES SEGUNDO CUATRIMESTRE 2022
-                       Las clases comienzan en el mes de  Agosto.
-                       Docuentacion  para la inscripcion:
-                       Fotocopia de DNI y CUIL.
-                       Cursos completamente Gratuitos
-                       Tenemos mas de 5 cursos de oficio para que puedas capacitarte!
-                       No dudes en consultarnos!
-                       CERTIFICADOS OFICIALES
-
-                       </p>
-                    <a href="#" class="btn btn-primary botonesForm ">Seguir Leyendo</a>
-                </div>
-            </div>
-            <div class="card sombra" style="width: 25rem; ">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary botonesForm">Go somewhere</a>
-                </div>
-            </div>      
-            <div class="card sombra" style="width: 25rem; ">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary botonesForm">Go somewhere</a>
-                </div>
-            </div>
-            <div class="card sombra" style="width: 25rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary botonesForm">Go somewhere</a>
-                </div>
-            </div>
-        
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="card  sombra" style="width: 25rem; ">
+                        <img class="card-img-top " alt="25">{{post.imagen}}</img>
+                        <div class="card-body">
+                            <h5 class="card-title"><noticia class="titulo">{{post.titulo}}</noticia></h5>
+                            <p class="card-text">{{post.resumen}}</p>
+                            <a href="{% url 'noticia:noticia' %}" class="btn btn-primary botonesForm ">Seguir Leyendo</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}  
     </div>
 </div>
   

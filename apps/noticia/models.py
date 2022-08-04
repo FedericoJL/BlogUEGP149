@@ -12,11 +12,12 @@ class Categoria(models.Model):
 class Noticia(models.Model):
     titulo = models.CharField(max_length = 250, null = False)
     fecha = models.DateTimeField(auto_now_add = True)
-    texto = RichTextField(null= True)
+    resumen = models.TextField(null = True)
+    texto = RichTextField(null = True)
     activo = models.BooleanField(default = True)
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True)
     destacada = models.BooleanField(default = False)
-    imagen = models.ImageField(upload_to = 'noticia', default = 'media/noticia/default.png')
+    imagen = models.ImageField(upload_to = 'media/noticia', default = 'media/noticia/default.png')
 
     def __str__(self):
         return self.titulo
