@@ -28,7 +28,7 @@ class Noticia(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True)
     destacada = models.BooleanField(default = False)
     imagen = models.ImageField(upload_to = 'media/noticia', default = 'media/noticia/default.png')
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(null=True, blank=True, unique=False)
 
     def __str__(self):
         return self.titulo
