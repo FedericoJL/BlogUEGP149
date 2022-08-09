@@ -1,0 +1,37 @@
+{%extends 'base.html' %}
+{% load static %}
+{% block destacadas %}
+
+        <!-- Blog entries-->
+        <div class="col-lg-8">
+            <!-- Featured blog post-->
+            <div class="card mb-4">
+                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                <div class="card-body">
+                    <div class="small text-muted">January 1, 2022</div>
+                    <h2 class="card-title">{{ object.titulo }}</h2>
+                    <p class="card-text">{{ object.texto }}</p>
+                    <a class="btn btn-primary" href="#!">seguir leyendo →</a>
+                </div>
+            </div>
+            
+            <!-- Nested row for non-featured blog posts-->
+            <div class="row">
+                {% for blog in object_list %}
+                <div class="col-lg-6">  
+                    <!-- Blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" src="{{blog.imagen.url}}" alt="..." /></a>
+                        <div class="card-body">
+                            <div class="small text-muted">January 1, 2022</div>
+                            <h2 class="card-title h4">{{ blog.titulo }}</h2>
+                            <p class="card-text">{{ blog.texto }}</p>
+                            <a class="btn btn-primary" href="#!">seguir leyendo →</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+         
+{% endblock destacadas %}

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Noticia, Categoria
 
+
 class NoticiaAdmin(admin.ModelAdmin):
     # con esto añades un campo de texto que te permite realizar la busqueda
     search_fields = ['titulo', 'categoria__nombre']

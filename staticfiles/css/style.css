@@ -1,0 +1,79 @@
+ /* fondos */
+ .FondomenuDesplegable{
+    background-color: #f3e49b;
+    border-radius: 0;
+ }
+ .FondomenuItem{
+   background-color: #f3e49b;
+}
+.FondoImp{
+   background-color: #f0c21b;
+}
+.Fondofooter{
+   background-color: #f0c21b;
+}
+.textoSec{
+   color: #0c2e3a;
+   size: 130;
+}
+
+hr {
+   background: #0c2e3a;
+   height: 30px;
+   margin-left: 0%;
+   width: 100%;
+   margin-top : 0%
+ }
+ .botonesForm{
+   background-color: #0b5184;
+   color: #ecf6fa;
+   border: 0
+ }
+ section{
+   float: left;
+   width: 93%;
+ }
+
+.imgNot {
+   width: 390px;
+   height: 450px;
+   object-fit: cover;
+ }
+ 
+ aside{
+   float: left;
+   margin-left: 70%;
+   padding: 1%;
+   width: 35%
+   
+}  
+
+ /* hover */
+ .FondomenuItem:hover{
+    background-color: #f0c21b;
+
+ }
+ .Fondomenu:hover{
+   background-color: #f3e49b;
+   size: 200;
+}
+.FondoImp:hover{
+   background: #0c2e3a;
+   font-size: 1.1rem;
+   color: #ebebe6 ;
+}
+.expandir:hover{
+   transform: scale(1.2);
+
+}
+.botonesForm:hover{
+   background-color: #b5d8eb;
+   color: #0c2e3a;
+}
+
+.logoCursos:hover{
+   transform: scale(1.2);
+}
+.sombra:hover{
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
