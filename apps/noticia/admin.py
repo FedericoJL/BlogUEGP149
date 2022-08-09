@@ -13,3 +13,9 @@ class NoticiaAdmin(admin.ModelAdmin):
 
 admin.site.register(Noticia, NoticiaAdmin)
 admin.site.register(Categoria)
+
+from .custom_filter import DuplicatSlugFilter
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_filter = (DuplicatSlugFilter,)
+
