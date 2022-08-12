@@ -1,11 +1,12 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.shortcuts import render
+from django.views.generic import CreateView
+from .models import Usuario
+from .forms import RegistroUsuarioFrom
 
-# Create your models here.
+# Create your views here.
 
-class Usuario(AbstractUser):
-    imagen = models.ImageField(upload_to='usuario', default='usuario/default_user.png' )
-    email = models.EmailField(null = False, blank = False)
-    facebook = models.URLField(null = True, blank = True)
-    twitter = models.URLField(null = True, blank = True)
-    instagram = models.URLField(null = True, blank = True)
+class RegistrarUsuario(CreateView):
+	model = Usuario
+	form_class = RegistroUsuarioFrom
+	template_name = 'usuario/registrar.html'
+

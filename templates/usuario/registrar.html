@@ -1,5 +1,6 @@
 {% load static %}
- 
+{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,18 +19,7 @@
 </head>
 <body>
     <header>
-        <div style="background-color: #0b5184;">
-        <div style="text-align: right; margin-right: 100px;color: white;">
-        
-            {% if user.is_autenticated %}
-            Autenticado
-            {% else %}
-            No autenticado
-            {% endif %}
-        
-        </div>
-        </div>
-        <nav class="navbar navbar-expand-md bg-light">   
+        <nav class="navbar navbar-expand-md bg-light">
             <div class="container-fluid ">
                 <a class="navbar-brand" href="#">
                     <img src="{% static 'img/logo.png' %}" alt="logo" height="120">
@@ -79,10 +69,7 @@
                             </ul>
                         </li>
                         <li class="nav-item Fondomenu">
-                            <a class="nav-link" href="#contactos">Contacto</a>
-                        </li>
-                        <li class="nav-item Fondomenu">
-                            <a class="nav-link" href="#contactos">Registrase</a>
+                            <a class="nav-link" href="#contactos">Contactos</a>
                         </li>
                     </ul>
                 </div>
@@ -190,61 +177,20 @@
     </header>
 
     <hr class="mb-4">
-    <!-- Page content-->
-    <div class="container">
-        <div class="row">
-                {% block destacadas %}
-                {% endblock destacadas %}
-                
-                {% block detalles %}
-                {% endblock detalles %}
-                
-                {% block noticias %}
-                {% endblock noticias %}           
-        
-            <!-- Side widgets-->
-            <div class="col-lg-4">
-                <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Buscar</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Ingrese una palabra..." aria-label="Ingrese una palabra..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Ir!</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Categories widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Categorias</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Side widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Links de interés</div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    <form method= "post" action="">
+
+        {% csrf_token %}
+        <div style="width: 70%; margin: auto;">
+        {{form|crispy}}
+    
+        <hr style="background-color: white;">
+        <button type="submit" class="btn.btn-success">Registrarse</button>
+        <hr style="background-color: white;">
+        </div>
+
+    </form>
+  
     <footer>
         <hr class="mb-0">
         <div class="container-fluid mt-0 Fondofooter">
