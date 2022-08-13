@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import Usuario
 from .forms import RegistroUsuarioFrom
 
@@ -9,4 +10,14 @@ class RegistrarUsuario(CreateView):
 	model = Usuario
 	form_class = RegistroUsuarioFrom
 	template_name = 'usuario/registrar.html'
+	success_url = reverse_lazy('login')
+
+class ModificarUsuario(UpdateView):
+	model = Usuario
+	form_class = RegistroUsuarioFrom
+	template_name = 'usuario/modificar.html'
+
+class DeleteUsuario(DeleteView):
+	model = Usuario
+	success_url = reverse_lazy('blog_list')
 
