@@ -23,11 +23,11 @@
         
             {% if user.is_authenticated %}
 
-            Hola {{ user.username }}! &nbsp; &nbsp; <a href="{% url 'logout' %}" style="color: white ;">Cerrar Cesión</a>
+            Hola {{ user.username }}! &nbsp; &nbsp; <a href="{% url 'modificarUsuario' user.pk %}" style="color: white ;">Mi Cuenta</a> &nbsp; &nbsp; <a href="{% url 'logout' %}" style="color: white ;">Cerrar Sesión</a>
 
             {% else %}
 
-            <a href="{% url 'login' %}" style="color: white ;">Ingresar</a> &nbsp; &nbsp; <a href="usuario" style="color: white ;">Registrarse</a>
+            <a href="{% url 'login' %}" style="color: white ;">Ingresar</a> &nbsp; &nbsp; <a href="{% url 'addUsuario' %}" style="color: white ;">Registrarse</a>
 
             {% endif %}
         
@@ -36,7 +36,7 @@
         <nav class="navbar navbar-expand-md bg-light">   
             <div class="container-fluid ">
                 <a class="navbar-brand" href="#">
-                    <img src="{% static 'img/logo.png' %}" alt="logo" height="120">
+                    <img src="{% static 'img/logo.png' %}" alt="logo" height="130">
                     <img src="{% static 'img/logo2.png' %}" alt="logo" height="80">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block contenido %}
 {% load crispy_forms_tags %}
-<div class="main-container">
-    <h1>Create Post</h1>
 
-    <form action="" method="POST" enctype="multipart/form-data">
+{% block contenido %}
+
+    <form method= "post" action="">
+
         {% csrf_token %}
+        
+        <div style="width: 40%; margin-left: 40px;">
+
         {{form|crispy}}
-        <input class="btn btn-primary" type="submit" value="Submit Post">
+    
+        <hr style="background-color: white;">
+        <button type="submit" class="btn.btn-success">Modificar</button>
+        <hr style="background-color: white;">
+        </div>
 
     </form>
-
-</div>
-
+  
 {% endblock contenido %}

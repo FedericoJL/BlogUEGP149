@@ -16,6 +16,7 @@ class ModificarUsuario(UpdateView):
 	model = Usuario
 	form_class = RegistroUsuarioFrom
 	template_name = 'usuario/modificar.html'
+	success_url = reverse_lazy('login')
 
 class DeleteUsuario(DeleteView):
 	model = Usuario
