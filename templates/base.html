@@ -1,5 +1,5 @@
 {% load static %}
- 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,8 +23,10 @@
         
             {% if user.is_authenticated %}
 
-            Hola {{ user.username }}! &nbsp; &nbsp; <a href="{% url 'modificarUsuario' user.pk %}" style="color: white ;">Mi Cuenta</a> &nbsp; &nbsp; <a href="{% url 'logout' %}" style="color: white ;">Cerrar Sesión</a>
-
+            Hola {{ user.username }}! &nbsp; &nbsp; <a href="{% url 'modificarUsuario' user.pk %}" style="color: white ;">Mi Cuenta</a> &nbsp; &nbsp; <a href="{% url 'logout' %}" style="color: white ;">Cerrar Sesión</a> 
+                {% if user.is_superuser %}
+                &nbsp; &nbsp; <a href="{% url 'postear' %}" style="color: white ;">Administrar
+                {% endif %}
             {% else %}
 
             <a href="{% url 'login' %}" style="color: white ;">Ingresar</a> &nbsp; &nbsp; <a href="{% url 'addUsuario' %}" style="color: white ;">Registrarse</a>
@@ -130,47 +132,8 @@
 
                 {% block contenido %}
                 {% endblock contenido %}
-                           
-            <!-- Side widgets-->
-            <div class="col-lg-4">
-                <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Buscar</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Ingrese una palabra..." aria-label="Ingrese una palabra..." aria-describedby="button-search" />
-                            <button class="btn btn-primary" id="button-search" type="button">Ir!</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Categories widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Categorias</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Side widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Links de interés</div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                </div>
-            </div>
+                
+                {% include 'side.html' %}
         </div>
     </div>
 

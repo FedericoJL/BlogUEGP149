@@ -5,12 +5,11 @@
 {% load crispy_forms_tags %}
 
 <div class="main-container">
-    <h1>Create Post</h1>
-
+    
     <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
-        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <p style="color:red ;">¿Estas seguro de querer eliminar la cuenta "{{ object }}"?</p>
         {{form}}
-        <input type="submit" value="Confirm">
+        <input type="submit" value="Confirmar">
 
     </form>
 

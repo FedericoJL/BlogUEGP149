@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import AllNews, BlogListView, BlogDetailView, AddNoticia, AboutUs
+from .views import AllNews, BlogListView, BlogDetailView, AddNoticia, EditarNoticia, AboutUs
 
 
 
 urlpatterns = [
-      path('postear/', AddNoticia.as_view()),
+      path('editar/<int:pk>', EditarNoticia.as_view(), name='editar'),
+      path('administrar/', AddNoticia.as_view(), name= 'postear'),
       path('nosotros/', AboutUs.as_view(), name='nosotros'),
       path('noticias/', AllNews.as_view(), name='blog_noticias'),
       path('<int:pk>', BlogDetailView.as_view(), name='blog_detail'),
