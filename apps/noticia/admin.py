@@ -7,7 +7,7 @@ class NoticiaAdmin(admin.ModelAdmin):
     search_fields = ['titulo', 'categoria__nombre']
     # con esto muestras los campos que deses al mostrar la lista en admin
     list_display = ('titulo', 'categoria', 'fecha')
-    list_filter = ('fecha','destacada')
+    list_filter = ('fecha',)
 
 # Register your models here.
 

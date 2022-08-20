@@ -18,7 +18,6 @@ class Noticia(models.Model):
     texto = RichTextField(null = True)
     activo = models.BooleanField(default = True)
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True)
-    destacada = models.BooleanField(default = False)
     imagen = models.ImageField(upload_to = 'noticia', default = 'noticia/default.png')
    
 
