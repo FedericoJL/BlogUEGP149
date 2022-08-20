@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+
+
+<div style="width: 65%; margin-left: 20px;">
+    <h1>Responder Comentario</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input class="btn btn-primary" type="submit" value="Responder">  
+    </form>
+</div>
+<script>
+    var name = "{{user.id}}";
+    document.getElementById("usuario-id").value = name;
+</script>
+
+{% endblock contenido %}

@@ -19,7 +19,7 @@ class Noticia(models.Model):
     activo = models.BooleanField(default = True)
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True)
     destacada = models.BooleanField(default = False)
-    imagen = models.ImageField(upload_to = 'media/noticia', default = 'media/noticia/default.png')
+    imagen = models.ImageField(upload_to = 'noticia', default = 'noticia/default.png')
    
 
     def __str__(self):
@@ -29,5 +29,5 @@ class Noticia(models.Model):
         return self.categoria
 
     def get_absolute_url(self):
-      return reverse('blog_detail', args=[str(self.id)])
+      return reverse('blog_detail', args=[str(self.pk)])
 

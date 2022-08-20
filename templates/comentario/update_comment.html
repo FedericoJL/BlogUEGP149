@@ -7,14 +7,15 @@
     <form method= "post" action="">
 
         {% csrf_token %}
+        
         <div style="width: 40%; margin-left: 40px;">
+
         {{form|crispy}}
     
-        <br><br>
-        <button type="submit" class="btn.btn-success">Registrarse</button>
-        <br><br>
+        <hr style="background-color: white;">
+        <button type="submit" class="btn.btn-success">Modificar</button>
+        <hr style="background-color: white;">
         </div>
-
     </form>
   
 {% endblock contenido %}
