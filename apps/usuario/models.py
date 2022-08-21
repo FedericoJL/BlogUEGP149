@@ -8,4 +8,4 @@ class Usuario(AbstractUser):
     imagen = models.ImageField(upload_to='usuario', default='usuario/user-default.png')
 
     def get_absolute_url(self):
-        return reverse('last_six_post')
+        return reverse('last_six_posts')
