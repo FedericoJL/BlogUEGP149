@@ -9,7 +9,7 @@ class BlogListView(ListView):
    model = Noticia
    template_name = 'home.html'
    context_object_name = 'last_six_posts'
-   queryset = Noticia.objects.filter(activo=True).order_by('-fecha')[2:8]
+   queryset = Noticia.objects.filter(activo=True).order_by('-fecha')[1:8]
    
 
 class LastPostView(ListView):
