@@ -7,13 +7,12 @@
             <!-- Featured blog post-->
             {% for blog in object_list %}
             <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg"
-                        alt="..." /></a>
+                <a href="#!"><img class="card-img-top" src="{{blog.imagen.url}}" alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">{{blog.fecha}}</div>
                     <h2 class="card-title">{{blog.titulo}}</h2>
                     <p class="card-text">{{blog.resumen}}</p>
-                    <a class="btn btn-primary" href="{{ blog.get_absolute_url }}">Read more →</a>
+                    <a class="btn btn-primary" href="{{ blog.get_absolute_url }}">Leer más</a>
                 </div>
             </div>
             {% endfor %}

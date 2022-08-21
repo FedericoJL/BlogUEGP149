@@ -8,4 +8,4 @@ class Usuario(AbstractUser):
     imagen = models.ImageField(upload_to='usuario', default='usuario/user-default.png')
 
     def get_absolute_url(self):
-        return reverse('blog_list')
+        return reverse('blog_list', args=[str(self.pk)])

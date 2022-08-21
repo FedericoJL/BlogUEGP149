@@ -7,6 +7,7 @@ from ckeditor.fields import RichTextField
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100, null = False, blank = False)
+    estado = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nombre
@@ -20,7 +21,9 @@ class Noticia(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True)
     imagen = models.ImageField(upload_to = 'noticia', default = 'noticia/default.png')
    
-
+    class Meta:
+        ordering = ['-fecha']
+        
     def __str__(self):
         return self.titulo
 

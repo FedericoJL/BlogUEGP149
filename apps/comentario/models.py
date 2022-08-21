@@ -7,7 +7,7 @@ from apps.usuario.models import Usuario
 
 class Comentario(models.Model):
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='comments')
-    usuario = models.ForeignKey(Usuario, on_delete = models.CASCADE, related_name='comments', verbose_name='usuario')
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='comments', verbose_name='usuario')
     comentario = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
 

@@ -4,21 +4,12 @@
 
         <!-- Blog entries-->
         <div class="col-lg-8">
-            <!-- Featured blog post-->
-            <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">{{ blog.fecha }}</div>
-                    <h2 class="card-title">{{ blog.titulo }}</h2>
-                    <p class="card-text">{{ object.resumen}}</p>
-                    <a class="btn btn-primary" href="{{ blog.get_absolute_url }}">seguir leyendo</a>
-                    
-                </div>
-            </div>
-            
+            {% block last %}
+            {% include 'last_post.html' with last_post=last_post %}
+            {% endblock last %}
             <!-- Nested row for non-featured blog posts-->
             <div class="row">
-                {% for blog in object_list %}
+                {% for blog in last_six_posts %}
                 <div class="col-lg-6">  
                     <!-- Blog post-->
                     <div class="card mb-4">

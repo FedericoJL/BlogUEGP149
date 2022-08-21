@@ -1,0 +1,16 @@
+
+{% for blog in last_post %}
+{% if last_post %}
+<!-- Featured blog post-->
+<div class="card mb-4">
+    <a href="#!"><img class="card-img-top" src="{{blog.imagen.url}}" alt="..." /></a>
+    <div class="card-body">
+        <div class="small text-muted">{{ blog.fecha }}</div>
+        <h2 class="card-title">{{ blog.titulo }}</h2>
+        <p class="card-text">{{ object.resumen}}</p>
+        <a class="btn btn-primary" href="{{ blog.get_absolute_url }}">seguir leyendo</a>
+
+    </div>
+</div>
+{% endif %}
+{% endfor %}
