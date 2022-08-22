@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from .models import Noticia
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 

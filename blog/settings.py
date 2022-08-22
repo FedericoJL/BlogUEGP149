@@ -18,8 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL ='usuario.Usuario'
 
-LOGIN_REDIRECT_URL = reverse_lazy('blog_list')
-LOGOUT_REDIRECT_URL = reverse_lazy('blog_list')
+LOGIN_REDIRECT_URL = reverse_lazy('last_six_posts')
+LOGOUT_REDIRECT_URL = reverse_lazy('last_six_posts')
 
 
 # Quick-start development settings - unsuitable for production
