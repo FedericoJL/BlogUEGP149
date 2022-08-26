@@ -23,13 +23,16 @@
         
             {% if user.is_authenticated %}
 
-            Hola {{ user.username }}! &nbsp; &nbsp; <a href="{% url 'modificarUsuario' user.pk %}" style="color: white ;">Mi Cuenta</a> &nbsp; &nbsp; <a href="{% url 'logout' %}" style="color: white ;">Cerrar Sesión</a> 
+            Hola {{ user.username }}! &nbsp; &nbsp; 
+            <a href="{% url 'modificarUsuario' user.pk %}" style="color: white ;">Mi Cuenta</a> &nbsp; &nbsp; 
+            <a href="{% url 'logout' %}" style="color: white ;">Cerrar Sesión</a> 
                 {% if user.is_superuser %}
                 &nbsp; &nbsp; <a href="{% url 'postear' %}" style="color: white ;">Administrar
                 {% endif %}
             {% else %}
 
-            <a href="{% url 'login' %}" style="color: white ;">Ingresar</a> &nbsp; &nbsp; <a href="{% url 'addUsuario' %}" style="color: white ;">Registrarse</a>
+            <a href="{% url 'login' %}" style="color: white ;">Ingresar</a> &nbsp; &nbsp; 
+            <a href="{% url 'addUsuario' %}" style="color: white ;">Registrarse</a>
 
             {% endif %}
         
@@ -37,9 +40,9 @@
         </div>
         <nav class="navbar navbar-expand-md bg-light">   
             <div class="container-fluid ">
-                <a class="navbar-brand" href="#">
-                    <img src="{% static 'img/logo.png' %}" alt="logo" height="130">
-                    <img src="{% static 'img/logo2.png' %}" alt="logo" height="80">
+                <a class="navbar-brand">
+                    <a href="{% url 'nosotros' %}"><img src="{% static 'img/logo.png' %}" alt="logo" height="130"></a>
+                    <a href="https://fundacion.uocra.org/"><img src="{% static 'img/logo2.png' %}" alt="logo" height="80"></a>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -49,7 +52,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto  mt-5 me-3">
                         <li class="nav-item gx-1">
-                            <a class="nav-link active Fondomenu " aria-current="page" href="{% url 'last_six_posts' %}">Inicio</a>
+                            <a class="nav-link active Fondomenu " aria-current="page" href="{% url 'last_x_posts' %}">Inicio</a>
                         </li>
                         <li class="nav-item gx-1">
                             <a class="nav-link Fondomenu " href="{% url 'nosotros' %}">Quienes Somos</a>
@@ -59,10 +62,14 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">Noticias</a>
                             <ul class="dropdown-menu FondomenuDesplegable border-0 text-center ">
                                 <li><a class="dropdown-item FondomenuItem" href="{% url 'blog_noticias' %}">Todas las Noticias</a></li>
-                                <li><a class="dropdown-item FondomenuItem" href="#">categoria 2</a></li>
-                                <li><a class="dropdown-item FondomenuItem" href="#">categoria 3</a></li>
-                                <li><a class="dropdown-item FondomenuItem" href="#">categoria 4</a></li>
-                                <li><a class="dropdown-item FondomenuItem" href="#">categoria 5</a></li>
+                                {% if cat_menu %}
+                                    {% for item in cat_menu %}
+                                        <li><a class="dropdown-item FondomenuItem" href="{% url 'category' item.pk %}">
+                                            {{ item }}
+                                        </a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}               
                             </ul>
                         </li>
                         <li class="nav-item dropdown gx-1">
@@ -71,13 +78,15 @@
                                 Ofertas Academicas
                             </a>
                             <ul class="dropdown-menu FondomenuDesplegable border-0 text-center">
-                                <li><a class="dropdown-item FondomenuItem " href="#">curso 1</a></li>
-                                <li><a class="dropdown-item FondomenuItem " href="#">curso 2</a></li>
-                                <li><a class="dropdown-item FondomenuItem " href="#">curso 3</a></li>
-                                <li><a class="dropdown-item FondomenuItem " href="#">curso 4</a></li>
-                                <li><a class="dropdown-item FondomenuItem " href="#">curso 5</a></li>
-                                <li><a class="dropdown-item FondomenuItem " href="#">curso 6</a></li>
-                                <li><a class="dropdown-item FondomenuItem " href="#">curso 7</a></li>
+                                <li><a class="dropdown-item FondomenuItem" href="{% url 'lista_cursos' %}">Todos los cursos</a></li>
+                                {% if cur_menu %}
+                                    {% for item in cur_menu %}
+                                        <li><a class="dropdown-item FondomenuItem" href="{% url 'curso' item.pk %}">
+                                            {{ item }}
+                                        </a>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}  
                                 <li><hr class="dropdown-divider"> </li>  
                                 <li><button class="dropdown-item FondoImp"data-bs-toggle="modal" data-bs-target="#inscripcion">Inscribite!</button></li>
                             </ul>

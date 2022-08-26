@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+
+<div style="width: 65%; margin-left: 20px;">
+    <h1>Noticia</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.media}}
+        {{form|crispy}}
+        <br>
+        <input class="btn btn-primary" type="submit" value="Agregar">  
+    </form>
+    <br><br>
+    <h1>Añadir/Editar Categoría/s</h1>
+    <div class="card mb-4">
+        
+        <div class="card-header">
+            Categorias &nbsp; &nbsp;
+            {% if user.is_superuser %}
+                <a style="color: green ;" href="{% url 'add_category' %}">(Añadir)</a>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-unstyled mb-0">
+                        {% if cat_menu %}
+                            {% for item in cat_menu %}
+                                <li><a href="{% url 'category' item.pk %}">{{ item }}</a>&nbsp; &nbsp;
+                                    <a style="color: orange ;" href="{% url 'edit_category' item.pk %}">(Editar)</a>
+                                </li>
+                            {% endfor %}
+                        {% endif %} 
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <h1>Añadir/Editar Curso/s</h1>
+    <div class="card mb-4">
+        
+        <div class="card-header">
+            Cursos &nbsp; &nbsp;
+            {% if user.is_superuser %}
+                <a style="color: green ;" href="{% url 'add_curso' %}">(Añadir)</a>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-unstyled mb-0">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock contenido %}

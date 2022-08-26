@@ -4,24 +4,51 @@
 
         <!-- Blog entries-->
         <div class="col-lg-8">
-            {% block last %}
-            {% include 'last_post.html' with last_post=last_post %}
-            {% endblock last %}
+            
+            {% for post in last_post %}
+            <!-- Featured blog post-->
+            <div class="card mb-4">
+                <a href="#!"><img class="card-img-top" src="{{post.imagen.url}}" alt="..." /></a>
+                <div class="card-body">
+                    <div class="small text-muted">
+                        <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'category' post.categoria.pk %}">
+                            {{ post.categoria }}
+                        </a> &nbsp;
+                        {{ post.fecha }}  
+                    </div>
+                    <h2 class="card-title">{{ post.titulo }}</h2>
+                    <p class="card-text">{{ post.resumen }}</p>
+                    <a class="btn btn-primary" href="{{ post.get_absolute_url }}">Leer más</a>&nbsp;
+                    {% if user.is_authenticated %}
+                            {% if user.is_superuser %}
+                                <small><a href="{% url 'editar' post.pk %}" style="color:red ;">Editar</a></small>
+                            {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+            {% endfor %}
+            
             <!-- Nested row for non-featured blog posts-->
             <div class="row">
-                {% for blog in last_six_posts %}
+                {% for post in last_x_posts %}
                 <div class="col-lg-6">  
                     <!-- Blog post-->
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="{{blog.imagen.url}}" alt="..." /></a>
+                        <a href="#!"><img class="card-img-top" src="{{post.imagen.url}}" alt="..." /></a>
                         <div class="card-body">
-                            <div class="small text-muted">{{ blog.fecha }}</div>
-                            <h2 class="card-title h4">{{ blog.titulo }}</h2>
-                            <p class="card-text">{{ blog.resumen }}</p>
-                            <a class="btn btn-primary" href="{{ blog.get_absolute_url }}">seguir leyendo</a>
+                            <div class="small text-muted">
+                                <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'category' post.categoria.pk %}">
+                                    {{ post.categoria }}
+                                </a> &nbsp;
+                                {{ post.fecha }} 
+                            </div>
+                            <h2 class="card-title h4">{{ post.titulo }}</h2>
+                            <p class="card-text">{{ post.resumen }}</p>
+                            <a class="btn btn-primary" href="{{ post.get_absolute_url }}">Leer más</a>&nbsp;
                             {% if user.is_authenticated %}
                                 {% if user.is_superuser %}
-                                <a class="btn btn-primary" href="{% url 'editar' blog.pk %}">editar</a>
+                                    <small><a href="{% url 'editar' post.pk %}" style="color:red ;">Editar</a></small>
                                 {% endif %}
                             {% endif %}
                         </div>

@@ -46,7 +46,7 @@ class UpdateComment(LoginRequiredMixin, UpdateView):
 class DeleteComment(LoginRequiredMixin, DeleteView):
     model = Comentario
     template_name = "comentario/delete_comment.html"
-    success_url = reverse_lazy('last_six_posts')
+    success_url = reverse_lazy('last_x_posts')
 
     def get_queryset(self):
         if self.request.user.is_staff:

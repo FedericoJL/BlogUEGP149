@@ -5,12 +5,11 @@
 {% block contenido %}
 
 <div style="width: 65%; margin-left: 20px;">
-    <h1>Crear Post</h1>
+    <h1>Editar Categoría</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form.media}}
         {{form|crispy}}
-        <input class="btn btn-primary" type="submit" value="Postear">  
+        <input class="btn btn-primary" type="submit" value="Editar">  
     </form>
 </div>
 

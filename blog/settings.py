@@ -18,8 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL ='usuario.Usuario'
 
-LOGIN_REDIRECT_URL = reverse_lazy('last_six_posts')
-LOGOUT_REDIRECT_URL = reverse_lazy('last_six_posts')
+LOGIN_REDIRECT_URL = reverse_lazy('last_x_posts')
+LOGOUT_REDIRECT_URL = reverse_lazy('last_x_posts')
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.noticia',
     'apps.comentario',
     'apps.usuario',
+    'apps.cursos',
     
 ]
 

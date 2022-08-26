@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+
+<!-- Page content-->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">{{ curso.nombre }}</h1>
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{ curso.imagen.url }}" alt="..." /></figure>
+                <!-- Post content-->
+                <section >
+                    <br>
+                    {{ curso.descripcion}}
+                    <br><br>
+                    <br><br>
+                </section>
+            </article>
+            <a class="btn btn-primary" href="#">Inscríbete!</a>&nbsp;
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <small>
+                        <a href="{% url 'editar_curso' curso.pk %}" style="color:red ;">Editar</a>
+                    </small>
+                {% endif %}
+            {% endif %}
+            <br><br>
+        </div>
+        
+        
+
+{% endblock contenido %}
