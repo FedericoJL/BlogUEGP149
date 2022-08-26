@@ -1,4 +1,3 @@
-from msilib.schema import ListView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .models import Cursos, Persona, Imagenes
