@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import AllNews, BlogListView, BlogDetailView, AddNoticia, CategoryPost, DeleteCategory, DeleteNoticia, EditarNoticia, AboutUs, AddCategory, SearchView, UpdateCategory
+from .views import AllNews, BlogListView, BlogDetailView, AddNoticia, CategoryPost, DeleteCategory, DeleteNoticia, EditarNoticia, AboutUs, AddCategory, search_view, UpdateCategory
 
 
 urlpatterns = [
       
-      path('buscar/', SearchView.as_view(), name='buscar'),
+      path('buscar/', search_view, name='buscar'),
       path('delete_noticia/<int:pk>', DeleteNoticia.as_view(), name= 'delete_noticia'),
       path('editar/<int:pk>', EditarNoticia.as_view(), name='editar'),
       path('delete_category/<int:pk>', DeleteCategory.as_view(), name= 'delete_category'),

@@ -6,8 +6,14 @@
 <div class="col-lg-4">
     <!-- Search widget-->
     <div class="card mb-4">
-        <form action="{% url 'buscar' %}" method="GET">
-            <input type="text" placeholder="Buscar" name="search"> <button>Buscar</button>
+        <form class='d-flex' method=POST 
+        action="{% url 'buscar' %}">{% csrf_token %}
+
+            <input class="form-control me-2" 
+            type="search" placeholder=
+            "Buscar en noticias" aria-label=
+            "Buscar" name="searched">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
         </form>
     </div>
     <!-- Categories widget-->

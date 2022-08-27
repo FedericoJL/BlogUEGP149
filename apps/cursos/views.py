@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from .models import Cursos, Persona, Imagenes
+from .models import Cursos, Persona
 from apps.noticia.models import Categoria
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView

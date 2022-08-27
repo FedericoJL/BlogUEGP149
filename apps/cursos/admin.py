@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cursos, Persona, Imagenes
+from .models import Cursos, Persona
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -17,5 +17,5 @@ class PersonaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
 
 admin.site.register(Cursos)
 admin.site.register(Persona, PersonaAdmin)
-admin.site.register(Imagenes)
+
 

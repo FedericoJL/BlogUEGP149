@@ -31,8 +31,4 @@ class Persona(models.Model):
       return reverse('curso', args=[str(self.pk)])
 
 
-class Imagenes(models.Model):
-    curso = models.ForeignKey(Cursos,on_delete = models.CASCADE, null=True)
-    imagen = models.ImageField(upload_to = 'curso', null=True)
-    activo = models.BooleanField(default=True)
     

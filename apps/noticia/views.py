@@ -1,8 +1,10 @@
 
+from pyexpat import model
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from apps.noticia.forms import PostForm
 from .models import Noticia, Categoria
+from apps.usuario.models import Integrantes
 from apps.cursos.models import Cursos, Persona
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -59,9 +61,11 @@ class AboutUs(ListView):
    def get_context_data(self, *args, **kwargs):
         cat_menu = Categoria.objects.all()
         cur_menu = Cursos.objects.all()
+        integ = Integrantes.objects.all()
         context = super(AboutUs, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
         context["cur_menu"] = cur_menu
+        context["integ"] = integ
         return context
 
    
@@ -179,25 +183,19 @@ class CategoryPost(ListView):
       context["cur_menu"] = cur_menu
       return context
 
+def search_view(request):
+   if request.method == 'POST':
+      searched = request.POST['searched']
+      results = Noticia.objects.filter(titulo__contains=searched)
 
-class SearchView(TemplateView):
-   template_name = 'noticia/buscar.html'
-
-   def get(self, request, *args, **kwargs):
-      q = request.GET.get('q', '')
-      self.results = Noticia.objects.filter(titulo__icontains=q, texto__icontains=q)
-      return super().get(request, *args, **kwargs)
-
-   def get_context_data(self, **kwargs):
-      return super().get_context_data(results=self.results, **kwargs)
-
-   def get_context_data(self, *args, **kwargs):
-      cat_menu = Categoria.objects.all()
-      cur_menu = Cursos.objects.all()
-      context = super(SearchView, self).get_context_data(*args, **kwargs)
-      context["cat_menu"] = cat_menu
-      context["cur_menu"] = cur_menu
-      return context
-
+      return render(request, 
+         'noticia/buscar.html',
+         {'searched':searched,
+         'results':results})
+   else:
+      return render(request, 
+         'noticia/buscar.html',
+         {})
+   
    
 

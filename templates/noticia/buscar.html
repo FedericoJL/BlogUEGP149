@@ -3,13 +3,36 @@
 
 {% block contenido %}
 
-{% if results.exists %}
-<h1>Las siguientes noticias continen la palabra...</h1>
-{% for result in results %}
-    <li>{{ result }}</li>
-{% endfor %}
+{% if searched %}
+<h1>Las siguientes noticias continen la palabra: {{ searched }}</h1>
+<br/>
+    <!-- Blog entries-->
+    <div class="col-lg-8">
+        <!-- Featured blog post-->
+        {% for result in results %}
+        <div class="card mb-4">
+            <a href="#!"><img class="card-img-top" src="{{result.imagen.url}}" alt="..." /></a>
+            <div class="card-body">
+                <div class="small text-muted">
+                    <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'category' result.categoria.pk %}">
+                        {{ result.categoria }}
+                    </a> &nbsp;
+                    {{ result.fecha }} 
+                </div>
+                <h2 class="card-title">{{result.titulo}}</h2>
+                <p class="card-text">{{result.resumen}}</p>
+                <a class="btn btn-primary" href="{{ result.get_absolute_url }}">Leer más</a>&nbsp;
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <small><a href="{% url 'editar' result.pk %}" style="color:red ;">Editar</a></small>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>  
+        {% endfor %}
+
 {% else %}
-    <p>No se encontraron coincidencias</p>
+    <h1>No se encontraron coincidencias</h1>
 {% endif %}
 
 {% endblock contenido %}
