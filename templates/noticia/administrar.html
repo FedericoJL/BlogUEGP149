@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block contenido %}
-
+{% if user.is_superuser %}
 <div style="width: 65%; margin-left: 20px;">
     <h1>Noticia</h1>
     <form action="" method="POST" enctype="multipart/form-data">
@@ -54,10 +54,17 @@
         </div>
     </div>
 </div>
+{% else %}
+
+<h1 style="margin: 100px; color: brown;">¡No deberías estar aquí!</h1>
+
+{% endif %}
 
 {% endblock contenido %}
 
+
 {% block side %}
+{% if user.is_superuser %}
 <!-- Side widgets-->
 <div class="col-lg-4">
     <!-- Search widget-->
@@ -113,5 +120,5 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 {% endblock side %}

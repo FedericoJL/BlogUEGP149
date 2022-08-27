@@ -86,7 +86,7 @@ class AddPersona(CreateView):
     model = Persona
     fields = '__all__'
     template_name = 'curso/add_persona.html'
-    success_url = reverse_lazy('postear')
+    success_url = reverse_lazy('last_x_posts')
 
     def get_context_data(self, *args, **kwargs):
         cur_menu = Cursos.objects.all()
@@ -95,7 +95,6 @@ class AddPersona(CreateView):
         context["cur_menu"] = cur_menu
         context["cat_menu"] = cat_menu
         return context
-
 
 
 def export_inscriptos_xls(request):

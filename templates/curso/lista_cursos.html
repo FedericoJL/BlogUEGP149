@@ -23,7 +23,7 @@
                     <br><br>
                 </section>
             </article>
-            <a class="btn btn-primary" href="#">Inscríbete!</a>&nbsp;
+            <a class="btn btn-primary" href="{% url 'add_persona' %}">Inscríbete!</a>&nbsp;
             {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                     <small>

@@ -13,7 +13,7 @@
                     <p class="card-text">{{curso.descripcion}}</p>
                     <br><br>
                     <br><br>
-                    <a class="btn btn-primary" href="#">Inscríbete!</a>&nbsp;
+                    <a class="btn btn-primary" href="{% url 'add_persona' %}">Inscríbete!</a>&nbsp;
                     {% if user.is_authenticated %}
                         {% if user.is_superuser %}
                             <small><a href="{% url 'editar_curso' curso.pk %}" style="color:red ;">Editar</a></small>
