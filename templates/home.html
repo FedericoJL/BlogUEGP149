@@ -8,7 +8,7 @@
             {% for post in last_post %}
             <!-- Featured blog post-->
             <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="{{post.imagen.url}}" alt="..." /></a>
+                <a><img class="card-img-top" src="{{post.imagen.url}}" alt="..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">
                         <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'category' post.categoria.pk %}">

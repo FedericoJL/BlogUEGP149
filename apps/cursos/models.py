@@ -13,7 +13,7 @@ class Cursos(models.Model):
         return self.nombre
 
     def get_absolute_url(self):
-      return reverse('blog_detail', args=[str(self.pk)])
+      return reverse('curso', args=[str(self.pk)])
     
 
 class Persona(models.Model):
@@ -25,11 +25,10 @@ class Persona(models.Model):
     ciudad = models.CharField(max_length=100, null=False)
     direccion = models.CharField(max_length=100)
     email = models.EmailField(null=False)
-    curso = models.ForeignKey(Cursos, on_delete = models.CASCADE, null=True, blank=True)
+    curso = models.ForeignKey(Cursos, on_delete = models.CASCADE,null=True, blank=True)
 
     def get_absolute_url(self):
-      return reverse('blog_detail', args=[str(self.pk)])
-
+      return reverse('curso', args=[str(self.pk)])
 
 
 class Imagenes(models.Model):

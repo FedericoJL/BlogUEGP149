@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+{% if results.exists %}
+<h1>Las siguientes noticias continen la palabra...</h1>
+{% for result in results %}
+<li>{{ result }}</li>
+{% endfor %}
+{% else %}
+    <p>No se encontraron coincidencias</p>
+{% endif %}
+
+{% endblock contenido %}

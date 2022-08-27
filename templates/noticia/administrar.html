@@ -14,52 +14,104 @@
         <input class="btn btn-primary" type="submit" value="Agregar">  
     </form>
     <br><br>
-    <h1>Añadir/Editar Categoría/s</h1>
+    <h1>Listado de Noticias</h1>
     <div class="card mb-4">
-        
-        <div class="card-header">
-            Categorias &nbsp; &nbsp;
-            {% if user.is_superuser %}
-                <a style="color: green ;" href="{% url 'add_category' %}">(Añadir)</a>
-            {% endif %}
-        </div>
+        <div class="card-header">Título</div>
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-6">
-                    <ul class="list-unstyled mb-0">
-                        {% if cat_menu %}
-                            {% for item in cat_menu %}
-                                <li><a href="{% url 'category' item.pk %}">{{ item }}</a>&nbsp; &nbsp;
-                                    <a style="color: orange ;" href="{% url 'edit_category' item.pk %}">(Editar)</a>
-                                </li>
-                            {% endfor %}
-                        {% endif %} 
-                    </ul>
-                </div>
+                <ol style="list-style-type:decimal; margin-left: 20px;" >
+                    {% if not_menu %}
+                        {% for item in not_menu %}
+                            <li><a>{{ item.titulo|slice:':60' }}...</a>&nbsp; &nbsp;
+                                <a>({{ item.fecha }})</a>&nbsp; &nbsp;
+                                <a style="color: orange ;" href="{% url 'editar' item.pk %}">(Editar)</a>&nbsp; &nbsp;
+                                <a style="color: red ;" href="{% url 'delete_noticia' item.pk %}">(Eliminar)</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %} 
+                </ol>  
             </div>
         </div>
     </div>
     <br><br>
-    <h1>Añadir/Editar Curso/s</h1>
-    <div class="card mb-4">
-        
-        <div class="card-header">
-            Cursos &nbsp; &nbsp;
-            {% if user.is_superuser %}
-                <a style="color: green ;" href="{% url 'add_curso' %}">(Añadir)</a>
-            {% endif %}
-        </div>
+    <h1>Listado de Inscriptos</h1>
+    <div class="card mb-4">  
+        <div class="card-header">Inscriptos: &nbsp; &nbsp;<a style="color: blue ;" href="{% url 'export_xls' %}">(Exportar)</a></div>
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-6">
-                    <ul class="list-unstyled mb-0">
-                        
-                    </ul>
-                </div>
+                <ol style="list-style-type: square; margin-left: 20px;" >
+                    {% if per_menu %}
+                        {% for item in per_menu %}
+                            <li>
+                            <a>{{ item.nombre }},</a>&nbsp; 
+                            <a>{{ item.apellidos }},</a>&nbsp;
+                            <a>{{ item.curso}}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %} 
+                </ol> 
             </div>
         </div>
     </div>
 </div>
 
-
 {% endblock contenido %}
+
+{% block side %}
+<!-- Side widgets-->
+<div class="col-lg-4">
+    <!-- Search widget-->
+    <div class="card mb-4">
+        <div class="card-header">Buscar</div>
+        <div class="card-body">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Ingrese una palabra..." aria-label="Ingrese una palabra..." aria-describedby="button-search" />
+                <button class="btn btn-primary" id="button-search" type="button">Ir!</button>
+            </div>
+        </div>
+    </div>
+    <!-- Categories widget-->
+    <div class="card mb-4">
+        <div class="card-header">
+            Añadir/Editar Categorias &nbsp; &nbsp;
+            <a style="color: green ;" href="{% url 'add_category' %}">(Añadir)</a>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <ul class="list-unstyled mb-0">
+                {% if cat_menu %}
+                    {% for item in cat_menu %}
+                        <li><a href="{% url 'category' item.pk %}">{{ item }}</a> &nbsp; &nbsp;
+                            <a style="color: orange ;" href="{% url 'edit_category' item.pk %}">(Editar)</a>&nbsp; &nbsp;
+                            <a style="color: red ;" href="{% url 'delete_category' item.pk %}">(Eliminar)</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}     
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Side widget-->
+    <div class="card mb-4">
+        <div class="card-header">
+            Añadir/Editar Cursos &nbsp; &nbsp;
+            <a style="color: green ;" href="{% url 'add_curso' %}">(Añadir)</a>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <ul class="list-unstyled mb-0">
+                {% if cur_menu %}
+                    {% for item in cur_menu %}
+                        <li><a href="{% url 'curso' item.pk %}">{{ item }}</a> &nbsp; &nbsp;
+                            <a style="color: orange ;" href="{% url 'editar_curso' item.pk %}">(Editar)</a>
+                            <a style="color: red ;" href="{% url 'borrar_curso' item.pk %}">(Eliminar)</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}   
+                </ul>               
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock side %}

@@ -88,7 +88,7 @@
                                     {% endfor %}
                                 {% endif %}  
                                 <li><hr class="dropdown-divider"> </li>  
-                                <li><button class="dropdown-item FondoImp"data-bs-toggle="modal" data-bs-target="#inscripcion">Inscribite!</button></li>
+                                <li><a class="dropdown-item FondoImp" href="{% url 'add_persona' %}">Inscribite!</a></li>
                             </ul>
                         </li>
                         <li class="nav-item Fondomenu">
@@ -141,8 +141,9 @@
 
                 {% block contenido %}
                 {% endblock contenido %}
-                
+                {% block side %}
                 {% include 'side.html' %}
+                {% endblock side %}
         </div>
     </div>
 

@@ -3,9 +3,10 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from apps.noticia.forms import PostForm
 from .models import Noticia, Categoria
-from apps.cursos.models import Cursos
+from apps.cursos.models import Cursos, Persona
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 
 
 class BlogListView(TemplateView):
@@ -16,7 +17,8 @@ class BlogListView(TemplateView):
       last_post = Noticia.objects.filter(activo=True).order_by('-fecha')[:1]
       cat_menu = Categoria.objects.all()
       cur_menu = Cursos.objects.all()
-      return {'last_x_posts': last_six_posts, 'last_post': last_post, 'cat_menu': cat_menu, 'cur_menu': cur_menu}
+      search = Noticia.objects.all()
+      return {'last_x_posts': last_six_posts, 'last_post': last_post, 'cat_menu': cat_menu, 'cur_menu': cur_menu, 'search': search}
    
 
 class BlogDetailView(DetailView):
@@ -25,8 +27,10 @@ class BlogDetailView(DetailView):
 
    def get_context_data(self, *args, **kwargs):
       cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
       context = super(BlogDetailView, self).get_context_data(*args, **kwargs)
       context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
       return context
    
 
@@ -41,8 +45,10 @@ class AllNews(ListView):
    
    def get_context_data(self, *args, **kwargs):
       cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
       context = super(AllNews, self).get_context_data(*args, **kwargs)
       context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
       return context
 
    
@@ -52,22 +58,30 @@ class AboutUs(ListView):
    
    def get_context_data(self, *args, **kwargs):
         cat_menu = Categoria.objects.all()
+        cur_menu = Cursos.objects.all()
         context = super(AboutUs, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
+        context["cur_menu"] = cur_menu
         return context
 
    
 class AddNoticia(CreateView):
    model = Noticia
-   form_class = PostForm
-   #fields = ['titulo','resumen', 'texto', 'categoria', 'activo', 'imagen']
+   #form_class = PostForm
+   fields = ['titulo','resumen', 'texto', 'categoria', 'activo', 'imagen']
    template_name = 'noticia/administrar.html'
    success_url = reverse_lazy('last_x_posts')
 
    def get_context_data(self, *args, **kwargs):
       cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
+      not_menu = Noticia.objects.all().order_by('-fecha')
+      per_menu = Persona.objects.all()
       context = super(AddNoticia, self).get_context_data(*args, **kwargs)
       context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
+      context["not_menu"] = not_menu
+      context["per_menu"] = per_menu
       return context
    
 
@@ -79,7 +93,22 @@ class EditarNoticia(UpdateView):
 
    def get_context_data(self, *args, **kwargs):
       cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
       context = super(EditarNoticia, self).get_context_data(*args, **kwargs)
+      context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
+      return context
+
+class DeleteNoticia(DeleteView):
+   model = Noticia
+   template_name = "noticia/delete_noticia.html"
+   success_url = reverse_lazy('postear')
+
+   def get_context_data(self, *args, **kwargs):
+      cur_menu = Cursos.objects.all()
+      cat_menu = Categoria.objects.all()
+      context = super(DeleteNoticia, self).get_context_data(*args, **kwargs)
+      context["cur_menu"] = cur_menu
       context["cat_menu"] = cat_menu
       return context
 
@@ -92,8 +121,10 @@ class AddCategory(CreateView):
 
    def get_context_data(self, *args, **kwargs):
       cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
       context = super(AddCategory, self).get_context_data(*args, **kwargs)
       context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
       return context
 
 
@@ -105,12 +136,26 @@ class UpdateCategory(UpdateView):
 
    def get_context_data(self, *args, **kwargs):
       cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
       context = super(UpdateCategory, self).get_context_data(*args, **kwargs)
       context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
       return context
 
+class DeleteCategory(DeleteView):
+   model = Categoria
+   template_name = "noticia/delete_category.html"
+   success_url = reverse_lazy('postear')
 
- 
+   def get_context_data(self, *args, **kwargs):
+      cur_menu = Cursos.objects.all()
+      cat_menu = Categoria.objects.all()
+      context = super(DeleteCategory, self).get_context_data(*args, **kwargs)
+      context["cur_menu"] = cur_menu
+      context["cat_menu"] = cat_menu
+      return context
+   
+
 class CategoryPost(ListView):
    model = Noticia
    context_object_name = 'category_posts'
@@ -128,8 +173,30 @@ class CategoryPost(ListView):
 
    def get_context_data(self, *args, **kwargs):
       cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
       context = super(CategoryPost, self).get_context_data(*args, **kwargs)
       context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
+      return context
+
+
+class SearchView(TemplateView):
+   template_name = 'noticia/buscar.html'
+
+   def get(self, request, *args, **kwargs):
+      q = request.GET.get('q', '')
+      self.results = Noticia.objects.filter(titulo__icontains=q, texto__icontains=q)
+      return super().get(request, *args, **kwargs)
+
+   def get_context_data(self, **kwargs):
+      return super().get_context_data(results=self.results, **kwargs)
+
+   def get_context_data(self, *args, **kwargs):
+      cat_menu = Categoria.objects.all()
+      cur_menu = Cursos.objects.all()
+      context = super(SearchView, self).get_context_data(*args, **kwargs)
+      context["cat_menu"] = cat_menu
+      context["cur_menu"] = cur_menu
       return context
 
    
