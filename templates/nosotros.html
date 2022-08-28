@@ -19,43 +19,47 @@
             Atententos a este compromiso, tenemos la responsabilidad de lograr el perfil de competencia y capacidad que
             requieren los nuevos desafíos que surgen de los nuevos tiempos.
         </p>
-        <p>Integrantes:</p>
-        <p>● Benítez, María Évelin (Directora)</p>
-        <p>● Benitez, Raquel Valeria</p>
-        <p>● González, Eusebio Gustavo</p>
-        <p>● Perrone, Orlando Pablo</p>
-        <p>● Durand, Miguel Víctor</p>
-        <p>● Romero, José Raúl</p>
-        <p>● Chaquires, Héctor Augusto</p>
-        <p>● Bolaño, Cristian Antonio</p>
-        <p>● Acosta, Ignacio Valentin</p>
-        <p>● Freschi, Roberto Felix</p>
-        <p>● Obregon, Mayra</p>
-        <p>● Zalazar, María Eva</p>
         <h2>Integrantes</h2>
         <div class="card-body">
             <div class="row">
-                <ol style="list-style-type: square; margin-left: 20px;" >
+                <ul style="list-style-type: square; margin-left: 20px;" >
                     {% if integ %}
-                        {% for item in integ %}
-                            <div>
-                            <li>{{ item.nombre }},{{ item.apellidos }}</li>
-                            <li>{{ item.cargo}}</li>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for item in integ %}
+                            {% if forloop.first %}
+                            <div class="col-sm-6">
+                                {% endif %}
+                                <ul class="list-unstyled mb-0">
+                                    <img src="{{ item.imagen.url }}" width="80" height="70">
+                                    {% if user.is_superuser %}
+                                    <a style="color: orange ;" href="{% url 'editar_integrante' item.pk %}">(Editar)</a>
+                                    {% endif %}
+                                    <li style="color: blue;"><b>{{ item.cargo }}</b></li>
+                                    <li><b>{{ item.apellido }},{{item.nombre}}</b></li>&nbsp;
+                                    {% if forloop.counter|divisibleby:2 %}    
+                                </ul>
                             </div>
-                            <div><img src="{{ item.imagen.url }}" width="80" height="70"></div>
-                            <div class="ms-3">
-                                <div class="fw-bold">{{ item.cargo}}</div>
-                                {{ item.nombre }},{{ item.apellidos }}
+                            <div class="col-sm-6">
+                                {% endif %}
+                                {% if forloop.last %}
+                                <ul class="list-unstyled mb-0">   
+                                </ul>
+                                {% endif %}
+                                {% endfor %}
                             </div>
-                        {% endfor %}
-                    {% endif %} 
-                </ol>
+                            {% endif %}
+                        </div>
+                    </div>
+                </ul>
             </div>
         </div>
-        <a href="#" class="btn btn-primary botonesForm ">volver</a>
+        <a href="{% url 'last_x_posts' %}" class="btn btn-primary botonesForm ">volver</a>
         </p>
     </div>  
 </div>
 
 
-{% endblock contenido %}
+
+{% endblock contenido %} 
+

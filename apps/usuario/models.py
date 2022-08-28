@@ -18,6 +18,9 @@ class Integrantes(models.Model):
     cargo= models.CharField(max_length=100, null=True)
     imagen = models.ImageField(upload_to='usuario', default='usuario/user-default.png')
 
+    def __str__(self):
+        return self.nombre
+
     def get_absolute_url(self):
-            return reverse('last_x_posts')
+            return reverse('last_x_posts', args=[str(self.pk)])
         

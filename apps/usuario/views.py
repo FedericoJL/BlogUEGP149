@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
-from .models import Usuario
+from .models import Integrantes, Usuario
 from .forms import RegistroUsuarioFrom
 
 # Create your views here.
@@ -22,3 +22,9 @@ class DeleteUsuario(DeleteView):
 	model = Usuario
 	success_url = reverse_lazy('last_x_posts')
 
+
+class EditarIntegrante(UpdateView):
+	model = Integrantes
+	fields = "__all__"
+	template_name = 'usuario/editar_integrante.html'
+	success_url = reverse_lazy('postear')
