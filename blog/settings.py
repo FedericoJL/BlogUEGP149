@@ -104,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'height': 300,
+        'width': '100%',
     },
 }
 

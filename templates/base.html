@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header>
+    <header class="header">
         <div style="background-color: #0b5184;">
             <div style="text-align: right; margin-right: 40px;color: white;">
             
@@ -138,10 +138,9 @@
                 </ol>
             </div>
         </div>
-
+        <hr class="mb-4">
     </header>
-
-    <hr class="mb-4">
+    <main>
     <!-- Page content-->
     <div class="container">
         <div class="row">
@@ -153,7 +152,7 @@
                 {% endblock side %}
         </div>
     </div>
-
+    </main>
     <footer>
         <hr class="mb-0">
         <div class="container-fluid mt-0 Fondofooter">

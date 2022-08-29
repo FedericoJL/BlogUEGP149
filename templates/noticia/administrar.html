@@ -4,7 +4,7 @@
 
 {% block contenido %}
 {% if user.is_superuser %}
-<div style="width: 65%; margin-left: 20px;">
+<div style="width: 65%; margin-left: 0px;">
     <h1>Noticia</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}

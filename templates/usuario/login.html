@@ -3,19 +3,22 @@
 {% load crispy_forms_tags %}
 
 {% block contenido %}
-
+<div>
     <form method= "post" action="">
 
         {% csrf_token %}
         
-        <div style="width: 40%; margin-left: 40px;">
+        <div style="width: 30%; margin-left: 0px;">
 
         {{form|crispy}}
         <br><br>
-        <button type="submit" class="btn.btn-success">Iniciar Sesión</button>
+        <button type="submit" class="botonesForm">Iniciar Sesión</button>
         <br><br>
         </div>
 
     </form>
-  
+</div> 
 {% endblock contenido %}
+
+{% block side %}
+{% endblock side %}
