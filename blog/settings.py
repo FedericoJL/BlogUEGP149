@@ -17,7 +17,7 @@ from django.urls import reverse_lazy
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL ='usuario.Usuario'
-
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = reverse_lazy('last_x_posts')
 LOGOUT_REDIRECT_URL = reverse_lazy('last_x_posts')
 

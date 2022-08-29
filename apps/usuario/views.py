@@ -20,6 +20,7 @@ class ModificarUsuario(UpdateView):
 
 class DeleteUsuario(DeleteView):
 	model = Usuario
+	template_name = 'usuario/eliminar_usuario.html'
 	success_url = reverse_lazy('last_x_posts')
 
 

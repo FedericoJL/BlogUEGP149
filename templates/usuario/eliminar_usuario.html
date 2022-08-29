@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+
+{% load crispy_forms_tags %}
+
+<div class="main-container">
+    
+    <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <p style="color:red ;">¿Estas seguro de querer eliminar la cuenta "{{ object }}"?</p>
+        {{form}}
+        <input type="submit" value="Confirmar">
+
+    </form>
+
+</div>
+
+{% endblock contenido %}
