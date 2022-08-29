@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+
+{% block slide %}
+{% endblock slide %}
+
 {% block contenido %}
 
-<div class="main-container">
+<div class="main-container" style="margin-top: 25px;">
     <h1>Eliminar Categoría</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <strong style="color:red ;">¿Estas seguro?!</strong> <br>
+        <strong style="color:red ;">¿Estas seguro?!</strong>
         <button type="submit" class="btn btn-danger">Eliminar</button>
     </form>
+    <br>
 </div>
 
 {% endblock contenido %}
+
+{% block side %}
+{% endblock side %}

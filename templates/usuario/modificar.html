@@ -2,6 +2,9 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block slide %}
+{% endblock slide %}
+
 {% block contenido %}
 
     <form method= "post" action="">
@@ -12,12 +15,15 @@
 
         {{form|crispy}}
     
-        <hr style="background-color: white;">
         <button type="submit" class="btn.btn-success">Modificar</button>
-        <hr style="background-color: white;">
+        
         </div>
-
+        <br>
         <div><a href="{% url 'eliminarUsuario' user.pk %}" style="color: red ;">Eliminar la Cuenta</a></div>
+        <br><br>
     </form>
   
 {% endblock contenido %}
+
+{% block side %}
+{% endblock side %}

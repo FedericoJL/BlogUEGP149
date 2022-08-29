@@ -88,7 +88,7 @@ hr {
    position: relative;
    overflow: hidden;
    width: 100%;
-   height: calc( 380px + 3em);
+   height: calc( 430px + 3em);
 }
 .slide-open:checked + .slide-item {
    position: static;
@@ -103,6 +103,7 @@ hr {
 .slide-item img {
    display: block;
    height: auto;
+   width: auto;
    max-width: 100%;
 }
 .slide-control {

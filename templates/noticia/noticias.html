@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block slide %}
+{% endblock slide %}
+
 {% block contenido %}
         <!-- Blog entries-->
-        <div class="col-lg-8">
+        <div class="col-lg-8" style="margin-top: 25px;">
             <!-- Featured blog post-->
             {% for post in all_posts %}
             <div class="card mb-4">
@@ -61,3 +64,57 @@
             {% endif %}
         </div>       
 {% endblock contenido %}
+
+{% block side %}
+
+<!-- Side widgets-->
+<div class="col-lg-4" style="margin-top: 25px;">
+    <!-- Search widget-->
+    <div class="card mb-4">
+        <form class='d-flex' method=POST 
+        action="{% url 'buscar' %}">{% csrf_token %}
+
+            <input class="form-control me-2" 
+            type="search" placeholder=
+            "Buscar en noticias" aria-label=
+            "Buscar" name="searched">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </form>
+    </div>
+    <!-- Categories widget-->
+    <div class="card mb-4">
+        <div class="card-header">Categorias</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-unstyled mb-0">
+                        {% if cat_menu %}
+                            {% for item in cat_menu %}
+                                <li><a href="{% url 'category' item.pk %}">{{ item }}</a></li>
+                            {% endfor %}
+                        {% endif %}    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Side widget-->
+    <div class="card mb-4">
+        <div class="card-header">Cursos</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-unstyled mb-0">
+                        {% if cur_menu %}
+                            {% for item in cur_menu %}
+                                <li><a href="{% url 'curso' item.pk %}">{{ item }}</a></li>
+                            {% endfor %}
+                        {% endif %}    
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock side %}

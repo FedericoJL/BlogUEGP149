@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header class="header">
+    <header>
         <div style="background-color: #0b5184;">
             <div style="text-align: right; margin-right: 40px;color: white;">
             
@@ -101,7 +101,7 @@
         <div>
             <hr class="mb-0">
         </div>
-
+        {% block slide %}
         <div class="slide">
             <div class="slide-inner">
                 <input class="slide-open" type="radio" id="slide-1" 
@@ -139,6 +139,7 @@
             </div>
         </div>
         <hr class="mb-4">
+        {% endblock slide %}
     </header>
     <main>
     <!-- Page content-->

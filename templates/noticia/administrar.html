@@ -2,9 +2,12 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block slide %}
+{% endblock slide %}
+
 {% block contenido %}
 {% if user.is_superuser %}
-<div style="width: 65%; margin-left: 0px;">
+<div style="width: 65%; margin-left: 0px; margin-top: 25px;">
     <h1>Noticia</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -33,7 +36,7 @@
             </div>
         </div>
     </div>
-    <br><br>
+    <br>
     <h1>Listado de Inscriptos</h1>
     <div class="card mb-4">  
         <div class="card-header">Inscriptos: &nbsp; &nbsp;<a style="color: blue ;" href="{% url 'export_xls' %}">(Exportar)</a></div>
@@ -53,6 +56,7 @@
             </div>
         </div>
     </div>
+    <br>
 </div>
 {% else %}
 
@@ -66,7 +70,7 @@
 {% block side %}
 {% if user.is_superuser %}
 <!-- Side widgets-->
-<div class="col-lg-4">
+<div class="col-lg-4" style="margin-top: 25px;">
     <!-- Search widget-->
     <div class="card mb-4">
         <div class="card-header">Buscar</div>
