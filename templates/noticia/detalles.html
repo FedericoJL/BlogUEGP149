@@ -37,8 +37,8 @@
                 <div class="card bg-light">
                     <div class="card-body">
                         <!-- Comment form-->
-                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Deja tu comentario!"></textarea> 
-                            <a href= "{% url 'add_comment' noticia.pk %}">Comentar</a>
+                        <form class="mb-4"><h3>Deja tu comentario!</h3>
+                            <h4><a href= "{% url 'add_comment' noticia.pk %}">Comentar</a></h4>
                         </form>
                         <!-- Comment with nested comments-->
                         {% if not noticia.comments.all %}
