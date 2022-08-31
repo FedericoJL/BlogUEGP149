@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'import_export',
     'ckeditor',
+    'ckeditor_uploader',
     'crispy_forms',
     'apps.noticia',
     'apps.comentario',
@@ -100,6 +101,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Configuracion de ckeditor:
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 
 CKEDITOR_CONFIGS = {
     'default': {
