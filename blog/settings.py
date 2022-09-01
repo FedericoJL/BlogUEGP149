@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'apps.comentario',
     'apps.usuario',
     'apps.cursos',
+    'cloudinary_storage',
+    'cloudinary',
     
 ]
 
@@ -100,6 +102,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dc83texkl',
+    'API_KEY': '818734378574231',
+    'API_SECRET': 'wHPSiaCb8uWZlvI11DWOt3Dy4bU',
+}
+
 # Configuracion de ckeditor:
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -143,7 +151,7 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
