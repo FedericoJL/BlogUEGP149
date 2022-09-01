@@ -95,6 +95,9 @@
                             <a class="nav-link" href="#contactos">Contacto</a>
                         </li>
                     </ul>
+                    {% if user.is_authenticated %}
+                    <img src="{{ user.imagen.url  }}" alt="user" height="130">
+                    {% endif %}
                 </div>
             </div> 
         </nav>

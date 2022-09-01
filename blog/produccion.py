@@ -19,5 +19,7 @@ DATABASES = {
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+
 import django_heroku
 django_heroku.settings(locals())

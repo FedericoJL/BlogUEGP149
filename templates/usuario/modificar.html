@@ -18,8 +18,9 @@
         <button type="submit" class="btn.btn-success">Modificar</button>
         
         </div>
-        <br>
-        <div><a href="{% url 'eliminarUsuario' user.pk %}" style="color: red ;">Eliminar la Cuenta</a></div>
+        <br><br>
+        <h2>Eliminar la cuenta</h2>
+        <h4>¿Desea Eliminar su cuenta? <a href="{% url 'eliminarUsuario' user.pk %}" style="color: red ;">Eliminar</a></h4>
         <br><br>
     </form>
   
