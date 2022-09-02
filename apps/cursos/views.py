@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from .models import Cursos, Persona
+from .models import Cursos, GalleryImage, Persona
 from apps.noticia.models import Categoria
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -81,6 +81,51 @@ class CursoView(DetailView):
         context["cur_menu"] = cur_menu
         context["cat_menu"] = cat_menu
         return context
+
+class AddImage(CreateView):
+    model = GalleryImage
+    fields = '__all__'
+    template_name = 'curso/add_image.html'
+    success_url = reverse_lazy('postear')
+    def get_context_data(self, *args, **kwargs):
+        cur_menu = Cursos.objects.all()
+        cat_menu = Categoria.objects.all()
+        imagenes = GalleryImage.objects.all()
+        context = super(AddImage, self).get_context_data(*args, **kwargs)
+        context["cur_menu"] = cur_menu
+        context["cat_menu"] = cat_menu
+        context["imagenes"] = imagenes
+        return context
+
+class EditarImagen(UpdateView):
+    model = GalleryImage
+    fields = '__all__'
+    template_name = 'curso/edit_image.html'
+    success_url = reverse_lazy('postear')
+
+    def get_context_data(self, *args, **kwargs):
+        cur_menu = Cursos.objects.all()
+        cat_menu = Categoria.objects.all()
+        imagenes = GalleryImage.objects.all()
+        context = super(EditarImagen, self).get_context_data(*args, **kwargs)
+        context["cur_menu"] = cur_menu
+        context["cat_menu"] = cat_menu
+        context["imagenes"] = imagenes
+        return context
+
+class EliminarImagen(DeleteView):
+    model = GalleryImage
+    template_name = "curso/delete_image.html"
+    success_url = reverse_lazy('postear')
+
+    def get_context_data(self, *args, **kwargs):
+        cur_menu = Cursos.objects.all()
+        cat_menu = Categoria.objects.all()
+        context = super(EliminarImagen, self).get_context_data(*args, **kwargs)
+        context["cur_menu"] = cur_menu
+        context["cat_menu"] = cat_menu
+        return context
+    
    
 class AddPersona(CreateView):
     model = Persona

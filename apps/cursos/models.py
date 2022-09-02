@@ -32,3 +32,11 @@ class Persona(models.Model):
 
 
     
+class GalleryImage(models.Model):
+  imagen = models.ImageField(upload_to = 'curso/galeria')
+  destacada = models.BooleanField(default=False)
+  activa = models.BooleanField(default = True)
+  curso = models.ForeignKey(Cursos, on_delete = models.CASCADE,null=True, blank=True)
+  
+  def get_absolute_url(self):
+      return reverse('curso', args=[str(self.pk)])

@@ -1,10 +1,13 @@
 from django.urls import path
-from .views import AddCurso, EditarCurso, EliminarCurso, ListaCursosView, CursoView, AddPersona, export_inscriptos_xls
+from .views import AddCurso, AddImage, EditarCurso, EditarImagen, EliminarCurso, EliminarImagen, ListaCursosView, CursoView, AddPersona, export_inscriptos_xls
 
 
 
 urlpatterns = [
 
+      path('borrar_imagen/<int:pk>', EliminarImagen.as_view(), name='borrar_imagen'),
+      path('editar_imagen/<int:pk>', EditarImagen.as_view(), name='editar_imagen'),
+      path('add_imagen/', AddImage.as_view(), name='add_imagen'),
       path('export/xls/', export_inscriptos_xls, name='export_xls'),
       path('add_persona/', AddPersona.as_view(), name='add_persona'),
       path('borrar/<int:pk>', EliminarCurso.as_view(), name='borrar_curso'),

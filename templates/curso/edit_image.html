@@ -6,66 +6,18 @@
 {% endblock slide %}
 
 {% block contenido %}
-{% if user.is_superuser %}
-<div style="width: 65%; margin-left: 0px; margin-top: 25px;">
-    <h1>Noticia</h1>
+
+<div style="width: 65%; margin-left: 20px;">
+    <h1>Cambiar Imagen</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.media}}
         {{form|crispy}}
-        <br>
-        <input class="btn btn-primary" type="submit" value="Agregar">  
+        <input class="btn btn-primary" type="submit" value="Aceptar">  
     </form>
-    <br><br>
-    <h1>Listado de Noticias</h1>
-    <div class="card mb-4">
-        <div class="card-header">Título</div>
-        <div class="card-body">
-            <div class="row">
-                <ol style="list-style-type:decimal; margin-left: 20px;" >
-                    {% if not_menu %}
-                        {% for item in not_menu %}
-                            <li><a>{{ item.titulo|slice:':60' }}...</a>&nbsp; &nbsp;
-                                <a>({{ item.fecha }})</a>&nbsp; &nbsp;
-                                <a style="color: orange ;" href="{% url 'editar' item.pk %}">(Editar)</a>&nbsp; &nbsp;
-                                <a style="color: red ;" href="{% url 'delete_noticia' item.pk %}">(Eliminar)</a>
-                            </li>
-                        {% endfor %}
-                    {% endif %} 
-                </ol>  
-            </div>
-        </div>
-    </div>
-    <br>
-    <h1>Listado de Inscriptos</h1>
-    <div class="card mb-4">  
-        <div class="card-header">Inscriptos: &nbsp; &nbsp;<a style="color: blue ;" href="{% url 'export_xls' %}">(Exportar)</a></div>
-        <div class="card-body">
-            <div class="row">
-                <ol style="list-style-type: square; margin-left: 20px;" >
-                    {% if per_menu %}
-                        {% for item in per_menu %}
-                            <li>
-                            <a>{{ item.nombre }},</a>&nbsp; 
-                            <a>{{ item.apellidos }},</a>&nbsp;
-                            <a>{{ item.curso}}</a>
-                            </li>
-                        {% endfor %}
-                    {% endif %} 
-                </ol> 
-            </div>
-        </div>
-    </div>
-    <br>
 </div>
-{% else %}
-
-<h1 style="margin: 100px; color: brown;">¡No deberías estar aquí!</h1>
-
-{% endif %}
 
 {% endblock contenido %}
-
 
 {% block side %}
 {% if user.is_superuser %}

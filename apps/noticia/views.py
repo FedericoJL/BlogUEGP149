@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from apps.noticia.forms import PostForm
 from .models import Noticia, Categoria
 from apps.usuario.models import Integrantes
-from apps.cursos.models import Cursos, Persona
+from apps.cursos.models import Cursos, GalleryImage, Persona
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -20,7 +20,8 @@ class BlogListView(TemplateView):
       cat_menu = Categoria.objects.all()
       cur_menu = Cursos.objects.all()
       search = Noticia.objects.all()
-      return {'last_x_posts': last_six_posts, 'last_post': last_post, 'cat_menu': cat_menu, 'cur_menu': cur_menu, 'search': search}
+      imagenes = GalleryImage.objects.all()
+      return {'last_x_posts': last_six_posts, 'last_post': last_post, 'cat_menu': cat_menu, 'cur_menu': cur_menu, 'search': search, 'imagenes': imagenes}
    
 
 class BlogDetailView(DetailView):
@@ -81,11 +82,13 @@ class AddNoticia(CreateView):
       cur_menu = Cursos.objects.all()
       not_menu = Noticia.objects.all().order_by('-fecha')
       per_menu = Persona.objects.all()
+      imagenes = GalleryImage.objects.all()
       context = super(AddNoticia, self).get_context_data(*args, **kwargs)
       context["cat_menu"] = cat_menu
       context["cur_menu"] = cur_menu
       context["not_menu"] = not_menu
       context["per_menu"] = per_menu
+      context['imagenes'] = imagenes
       return context
    
 

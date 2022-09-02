@@ -1,5 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block slide %}
+<div id="CarouselWithControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+  {% if imagenes %}
+  {% for item in imagenes %}
+      {% if forloop.first %}
+        <div class="carousel-item {% if forloop.first %} active {% endif %}">
+          
+          <img src="{{ item.imagen.url }}" class="d-block w-100">
+          
+        </div>
+      {% else %}
+        <div class="carousel-item {% if  forloop.first %} active {% endif %}">
+          
+          <img src="{{ item.imagen.url }}" class="d-block w-100">
+          
+        </div>
+      {% endif %}
+  <a class="carousel-control-prev" href="#CarouselWithControls" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+  <a class="carousel-control-next" href="#CarouselWithControls" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only"></span>
+  </a>
+  {% endfor %}
+  {% else %}
+  <div class="carousel-item active">
+    <img class="d-block w-100" src="{% static 'img/default.jpg' %}" alt="First slide">
+  </div>
+  {% endif %}
+  </div>
+  </div>
+<hr class="mb-4">                          
+{% endblock slide %}
+
 {% block contenido %}
 
         <!-- Blog entries-->
