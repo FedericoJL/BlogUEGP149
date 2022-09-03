@@ -14,7 +14,8 @@
                 <div class="card-body">
                     <div class="small text-muted">
                         <a class="badge bg-secondary text-decoration-none link-light" href="{% url 'curso' image.curso.pk %}">
-                            {{ image.curso }}
+                            {{ image.curso }} 
+                        </a>
                     </div>
                     {% if user.is_authenticated %}
                         {% if user.is_superuser %}
