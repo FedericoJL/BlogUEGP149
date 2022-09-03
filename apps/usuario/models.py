@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class Usuario(AbstractUser):
-    imagen = models.ImageField(upload_to='usuario', default='usuario/user-default.png')
+    imagen = models.ImageField(upload_to='usuario', default='usuario/default_user.png')
 
     def get_absolute_url(self):
         return reverse('last_x_posts', args=[str(self.pk)])
