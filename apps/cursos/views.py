@@ -69,7 +69,6 @@ class CursoView(DetailView):
     model = Cursos
     context_object_name = 'curso'
     template_name = 'curso/lista_cursos.html'
-    paginate_by = 2
 
     def get_queryset(self):
         return Cursos.objects.all()
@@ -125,6 +124,24 @@ class EliminarImagen(DeleteView):
         context["cur_menu"] = cur_menu
         context["cat_menu"] = cat_menu
         return context
+
+class GalleryView(ListView):
+    model = GalleryImage
+    context_object_name = 'all_images'
+    paginate_by = 4
+    template_name = 'curso/imagenes.html'
+
+    def get_queryset(self):
+        return GalleryImage.objects.filter(destacada=False)
+
+    def get_context_data(self, *args, **kwargs):
+        cur_menu = Cursos.objects.all()
+        cat_menu = Categoria.objects.all()
+        context = super(GalleryView, self).get_context_data(*args, **kwargs)
+        context["cur_menu"] = cur_menu
+        context["cat_menu"] = cat_menu
+        return context
+    
     
    
 class AddPersona(CreateView):

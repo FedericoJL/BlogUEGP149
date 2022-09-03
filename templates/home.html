@@ -4,8 +4,8 @@
 {% block slide %}
 <div id="CarouselWithControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-  {% if imagenes %}
-  {% for item in imagenes %}
+  {% if carrusel %}
+  {% for item in carrusel %}
       {% if forloop.first %}
         <div class="carousel-item {% if forloop.first %} active {% endif %}">
           

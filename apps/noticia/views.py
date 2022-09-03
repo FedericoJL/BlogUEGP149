@@ -20,8 +20,8 @@ class BlogListView(TemplateView):
       cat_menu = Categoria.objects.all()
       cur_menu = Cursos.objects.all()
       search = Noticia.objects.all()
-      imagenes = GalleryImage.objects.all()
-      return {'last_x_posts': last_six_posts, 'last_post': last_post, 'cat_menu': cat_menu, 'cur_menu': cur_menu, 'search': search, 'imagenes': imagenes}
+      carrusel = GalleryImage.objects.filter(destacada=True)
+      return {'last_x_posts': last_six_posts, 'last_post': last_post, 'cat_menu': cat_menu, 'cur_menu': cur_menu, 'search': search, 'carrusel': carrusel}
    
 
 class BlogDetailView(DetailView):
